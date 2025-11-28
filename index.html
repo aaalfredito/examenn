@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Login - Control de Versiones</title>
-    <meta name="description" content="Sistema de autenticación con roles de usuario">
-    <meta name="keywords" content="login, autenticación, roles, usuarios">
-
+    <title>Sistema de Gestión - Login</title>
+    <meta name="description" content="Sistema de gestión con control de roles y versiones">
+    <meta name="keywords" content="login, gestión, usuarios, roles">
+    
     <script src="https://resource.trickle.so/vendor_lib/unpkg/react@18/umd/react.production.min.js"></script>
     <script src="https://resource.trickle.so/vendor_lib/unpkg/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://resource.trickle.so/vendor_lib/unpkg/@babel/standalone/babel.min.js"></script>
@@ -17,25 +17,33 @@
     @layer theme {
         :root {
             --primary-color: #2563eb;
-            --secondary-color: #8b5cf6;
-            --accent-color: #10b981;
+            --secondary-color: #1e40af;
+            --bg-dark: #000000;
+            --text-light: #ffffff;
         }
     }
 
     @layer base {
         body {
+            font-family: 'Times New Roman', serif;
             margin: 0;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            padding: 0;
         }
         
         h1, h2, h3, h4, h5, h6 {
-            font-family: 'Times New Roman', Times, serif;
             font-weight: bold;
         }
     }
 
     @layer utilities {
-        .login-container {
+        .bg-motorcycle {
+            background-image: url('https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        .transparent-container {
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -45,9 +53,8 @@
 </head>
 <body>
     <div id="root"></div>
-    <script type="text/babel" src="components/Logo.js"></script>
-    <script type="text/babel" src="components/LoginForm.js"></script>
     <script type="text/babel" src="utils/auth.js"></script>
+    <script type="text/babel" src="components/Logo.js"></script>
     <script type="text/babel" src="app.js"></script>
 </body>
 </html>

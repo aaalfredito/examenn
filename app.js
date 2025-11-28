@@ -19,7 +19,7 @@ class ErrorBoundary extends React.Component {
           <div className="text-center">
             <h1 className="text-2xl font-bold text-gray-900 mb-4">Algo salió mal</h1>
             <p className="text-gray-600 mb-4">Lo sentimos, ocurrió un error inesperado.</p>
-            <button onClick={() => window.location.reload()} className="px-6 py-2 bg-blue-600 text-white rounded-lg">
+            <button onClick={() => window.location.reload()} className="px-6 py-2 bg-[var(--primary-color)] text-white rounded-lg">
               Recargar Página
             </button>
           </div>
@@ -32,16 +32,66 @@ class ErrorBoundary extends React.Component {
 
 function App() {
   try {
+    const [username, setUsername] = React.useState('');
+    const [password, setPassword] = React.useState('');
+    const [error, setError] = React.useState('');
+
+    const handleLogin = (e) => {
+      e.preventDefault();
+      const user = authenticateUser(username, password);
+      
+      if (user) {
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        window.location.href = 'dashboard.html';
+      } else {
+        setError('Usuario o contraseña incorrectos');
+      }
+    };
+
     return (
-      <div 
-        className="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat"
-        style={{backgroundImage: 'url(https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80)'}}
-        data-name="app" 
-        data-file="app.js"
-      >
-        <div className="login-container rounded-2xl p-8 w-full max-w-md shadow-2xl">
-          <Logo />
-          <LoginForm />
+      <div className="min-h-screen bg-motorcycle flex items-center justify-center p-4" data-name="login-page" data-file="app.js">
+        <div className="transparent-container rounded-2xl p-8 w-full max-w-md shadow-2xl">
+          <div className="flex justify-center mb-6">
+            <Logo />
+          </div>
+          
+          <h1 className="text-3xl font-bold text-white text-center mb-2">Sistema de Gestión</h1>
+          <p className="text-white text-center mb-6 opacity-90">Iniciar Sesión</p>
+          
+          <form onSubmit={handleLogin} className="space-y-4">
+            <div>
+              <label className="block text-white font-bold mb-2">Usuario</label>
+              <input
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                className="w-full px-4 py-3 rounded-lg bg-white bg-opacity-90 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Ingrese su usuario"
+                required
+              />
+            </div>
+            
+            <div>
+              <label className="block text-white font-bold mb-2">Contraseña</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full px-4 py-3 rounded-lg bg-white bg-opacity-90 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Ingrese su contraseña"
+                required
+              />
+            </div>
+            
+            {error && <p className="text-red-300 text-sm font-bold">{error}</p>}
+            
+            <button
+              type="submit"
+              className="w-full py-3 bg-[var(--primary-color)] text-white font-bold rounded-lg hover:bg-[var(--secondary-color)] transition-colors"
+            >
+              Ingresar
+            </button>
+          </form>
         </div>
       </div>
     );

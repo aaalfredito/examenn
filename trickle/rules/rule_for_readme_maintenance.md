@@ -1,6 +1,6 @@
-When updating the project:
-- Check if the changes affect the project structure, features, or functionality
-- Update the README.md in `trickle/notes/` to reflect any significant changes
-- Keep the "Última Actualización" date current
-- Maintain consistency in documentation style and format
-- Include new components, pages, or major features in the structure section
+When project is updated with new features, pages, or significant changes
+- Update the README.md in trickle/notes folder
+- Keep the documentation accurate and up-to-date
+- Document new user credentials if added
+- List new features and components
+- Update technical specifications if changed
